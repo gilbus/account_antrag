@@ -1,0 +1,161 @@
+{% macro date_input(name, id='', classes=None) -%}
+<input class="{{ classes|join(' ') if classes }}"
+       type="date"
+       id="{{ id }}"
+       name="{{ name  }}"
+       value="yyyy-mm-dd"
+       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+{%- endmacro %}
+<!DOCTYPE HTML>
+<html lang="{{ language }}">
+  <head>
+    <title>{{ _('title') }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script>
+      function open_detail(list_of_ids_of_detail_to_open) {
+        // first close all other details and disable them additionally
+        document.querySelectorAll('details').forEach((detail) =>  {
+          detail.open = false;
+          // requires that every details is inclosed in a fieldset element
+          detail.parentElement.disabled = true;
+        }
+        )
+        // open necessary details
+        list_of_ids_of_detail_to_open.forEach((id_of_detail_to_open) => {
+          document.querySelector('#' + id_of_detail_to_open).open = true;
+          document.querySelector('#' + id_of_detail_to_open).parentElement.disabled = false;
+        }
+        )
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+    {{ _('introduction') }}
+    <br/>
+    <br/>
+    {{ _('contact') }}
+    <br/>
+    <br/>
+    {{ _('terms_of_use') }}
+    {{ _('application_selection') }}
+    </p>
+    {% for supported_language in supported_languages %}
+    {% if language == supported_language %}
+    <b>{{ _(supported_language) }}</b>
+    {% else %}
+    <a href="index.{{ supported_language }}.html">{{ _(supported_language) }}</a>
+    {% endif %}
+    {% endfor %}
+    <form method="post" action="{{ cgi_url }}">
+      <input type="hidden" name="applicationLanguage" value="{{ language }}"/>
+      <fieldset>
+        <legend>{{ _('basic_information') }}</legend>
+        <label for="givenName">{{ _('given_name') }}:</label>
+        <input name="givenName" id="givenName" type="text" size="40" maxlength="40">
+        <br/>
+        <br/>
+        <label for="surname">{{ _('surname') }}:</label>
+        <input name="surname" id="surname" type="text" size="40" maxlength="40">
+        <br/>
+        <br/>
+        <label for="matriculationNo">{{ _('uniID_if_member') }}:</label>
+        <input name="matriculationNo" id="matriculationNo" type="text" size="10" maxlength="10" pattern='\d{5,8}'>
+        <br/>
+        {{ _('no_id_yet') }}
+        <br/>
+      </fieldset>
+      <fieldset>
+        <legend>{{ _('application_type') }}</legend>
+        {% for identifier in types %}
+        {% set additional_information = types[identifier].additional_information|default([]) %}
+        {# First one is marked default #}
+        <input type="radio"
+               name="applicationType"
+               id="{{ identifier }}_application"
+               value="{{ identifier }}"
+               {{ 'checked' if loop.first }}
+               {# Using %r instead %s inserts the string value with quotes which is what we need #}
+               onchange={{ '"open_detail(%r)"'|format(additional_information) }} />
+        <label for="{{ identifier }}_application">
+          {{ _(identifier) }}
+        </label>
+        <br/>
+        {% endfor %}
+      </fieldset>
+      <br/>
+      {# disabled per default since the default applicationType does not require any additional information #}
+      <fieldset disabled="true">
+        <details id='course_selection'>
+          <summary>{{ _('non-techfak_students-short') }}</summary>
+          <p>
+          {{ _('non-techfak_students-full') }}
+          </p>
+          <label for="faculty">{{ _('your_faculty') }}:</label>
+          <input name="faculty" id="faculty" type="text" size="40" maxlength="40"/>
+          <br/>
+          <br/>
+          <label>{{ _('course_title') }}:</label>
+          <input name="courseName" id="courseName" type="text" size="40" maxlength="40"/>
+          <br/>
+          <br/>
+          <label for="lecturerName">{{ _('lecturer_name') }}:</label>
+          <input name="lecturerName"
+                 id="lecturerName"
+                 type="text"
+                 size="40"
+                 maxlength="40"/>
+          <br/>
+          <br/>
+          <label for="nonTechfakDateOfBirth">{{ _('non-techfak_date_of_birth') }}:</label>
+          {{ date_input(id='nonTechfakDateOfBirth', name='dateOfBirth') }}
+          <br/>
+        </details>
+      </fieldset>
+      <br/>
+      <fieldset disabled="true">
+        <details id='institute_chooser'>
+          <summary>{{ _('not_student') }}</summary>
+          <p>
+          {{ _('institute_choose') }}:
+          </p>
+          {% for identifier in institutes %}
+          <input type="radio" name="institute" value="{{ identifier }}" id="{{ identifier }}"/>
+          <label for="{{ identifier }}">{{ _(identifier) }}</label>
+          <br/>
+          {% endfor %}
+          <input type="radio" name="institute" value="other" id="other" checked>
+          <label for="other">{{ _('other') }}: </label>
+          <input name="otherInstituteName" type="text" size="40" maxlength="40"/>
+          <br/>
+          <p>
+          <label for="contactPerson">{{ _('contact_person') }}: </label>
+          </p>
+          <input type="text" size="60" maxlength="60" name="contactPerson" id="contactPerson"/>
+          <br/>
+          <p>
+          <label for="dateOfExmat">{{ _('institute_leave') }}</label>
+          </p>
+          {{ date_input(id='dateOfExmat', name='dateOfExmat') }}
+          <p>
+          <label for="nonStudentDateOfBirth">{{ _('non-member_date_of_birth') }}</label>
+          </p>
+          {{ date_input(id='nonStudentDateOfBirth', name='dateOfBirth') }}
+        </details>
+      </fieldset>
+      <br/>
+      <table width="95%" cellspacing=0>
+        <tr>
+          <td width="6%"></td>
+          <td bgcolor="#f0f0f0" >
+            {{ _('tf_privacy_policy') }}
+            <br/>
+            {{ _('uni_privacy_policy') }}
+          </td>
+        </tr>
+      </table>
+      <br>
+      <center><input type="submit" value="{{ _('agree') }}"></center>
+    </form>
+  </body>
+</html>

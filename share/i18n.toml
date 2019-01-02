@@ -1,0 +1,450 @@
+# See https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.4.0.md
+# 0.4.0 is the current version supported by `python3-toml` in Debian 9, in case of an
+# upgrade a migration might be necessary
+
+# the following key MUST be available and non-empty for every entry
+fallback = 'en'
+# only languages listed here can be built
+supported = [
+  'de',
+  'en',
+]
+
+# translations of the languages for language switches
+[de]
+de = 'Deutsch'
+en = 'Deutsch'
+
+[en]
+de = 'English'
+en = 'English'
+
+# inline HTML tags are supported but will NOT be escaped, so be careful!
+# best practise is to only use markup tags such as <b> or <a> tags for links
+# and no tags influencing the document structure (<div> and the like)
+
+# don't worry about line breaks inside the translations, irrelevant for HTML
+
+# only use ''' for multi line strings to be able to use normal quotes inside the string
+[title]
+de = '''
+Accountantrag für die Rechnernutzung an der Technischen Fakultät'''
+en = '''
+Account Application Form for Computer Systems of the Faculty of Technology (TechFak)'''
+
+[introduction]
+en = '''
+If you would like to apply for an account to use the computer systems provided and
+maintained by the Rechnerbetriebsgruppe (RBG, the Computer System Operators) you have
+come to the right place. Accounts issued by the RBG can be used in most of the
+scientific institutes of the TechFak and at the Grundstudiumszentrum Informatik (GZI, 
+the student computer pool).
+'''
+de = '''
+Hier kann ein Account für die von der Rechnerbetriebsgruppe (RBG) betriebenen 
+Computersysteme beantragt werden. Dazu zählen die meisten Rechner der wissenschaftlichen 
+Arbeitsgruppen in TechFak und CITEC und des GZI (Grundstudiumszentrum Informatik, aka. 
+Rechner-Pools).
+'''
+
+[contact]
+en = '''
+If you have a problem with an existing account, please send an email to
+<a href='mailto:support@techfak.net'>support@techfak.net</a>
+or drop by at the support office at M3-100. <b>Please do not apply for an additional 
+account!</b>
+'''
+de = '''
+Falls es ein Problem mit einem bereits <b>existierenden</b> Account gibt, oder Sie vor 
+längerer Zeit einen Account bei uns hatten, dann kommen Sie bitte in M3-100 vorbei, 
+schicken uns eine Email an <a href='mailto:support@techfak.net'>support@techfak.net</a> oder rufen uns unter 2900 (hausintern) 
+an. <b>Bitte beantragen Sie keinen zweiten Account.</b>
+'''
+
+[terms_of_use]
+en = '''
+Please make sure that you read our
+<a target=blank 
+href='http://www.techfak.net/ext/static/accountantrag/benutzungsordnung.pdf'>Terms of 
+Use</a>.
+When you receive your account you will be presented with a form to sign, that you will 
+adhere to them.
+'''
+de = '''
+Bitte lesen Sie unsere <a target=blank 
+href="http://www.techfak.net/ext/static/accountantrag/benutzungsordnung.pdf">Benutzungsordnung</a>.  
+Wenn Sie Ihren Account von uns erhalten, müssen Sie unterschreiben, dass Sie die 
+Benutzungsordnung gelesen und verstanden haben.
+'''
+
+[application_selection]
+en = '''
+Please choose if you would like to apply for a normal student account, a student 
+assistent account, an employee or guest account. If you are applying for a student 
+account and are in doubt which to choose, please use the normal student account!
+'''
+de = '''
+Bitte wählen Sie, ob Sie einen Studierendenaccount, einen Hilfskraft-Account, einen 
+Angestelltenaccount oder einen Gastaccount beantragen möchten.
+'''
+
+[basic_information]
+en = 'Basic Information'
+de = 'Basis Informationen'
+
+[given_name]
+en = 'Given Name (forename)'
+de = 'Vorname'
+
+[surname]
+en = 'Family Name (surname)'
+de = 'Nachname'
+
+[uniID_if_member]
+en = 'UniID (if you are a member of the university [not FH])'
+de = 'UniID/Matrikelnummer (für Angehörige der Universität [nicht aber der FH])'
+
+[no_id_yet]
+en = 'If you did not receive your matriculation number yet you can hand it in later.'
+de = '''Falls noch keine Matrikelnummer vorhanden ist, kann diese später nachgereicht 
+werden.'''
+
+
+[application_type]
+en = 'Application type'
+de = 'Art des Accounts'
+
+[non-techfak_students-short]
+en = 'Non-TechFak students'
+de = 'Studierende einer anderen Fakultät'
+
+[non-techfak_students-full]
+en = '''
+<b>Non-TechFak Students</b> please provide details on the course you need your 
+TechFak-account for. Check with the professor/lecturer that you will need access to the 
+students computer pool.
+'''
+de = '''
+Von <b>Studierenden anderer Fakultäten</b> erbitten wir Angaben zu den Kursen, die sie 
+an der Technischen Fakultät besuchen wollen. Bitte prüfen Sie vor dem Stellen des 
+Accountantrages, ob studentisches Arbeiten an den Rechnern der Technischen Fakultät im 
+Rahmen der besuchten Veranstaltung erforderlich ist. 
+'''
+
+[your_faculty]
+en = 'Your Faculty'
+de = 'Fakultät an der Sie eingeschrieben sind'
+
+[course_title]
+en = 'Title of the course'
+de = 'Name der Veranstaltung der Technischen Fakultät'
+
+[lecturer_name]
+en = 'Name of the professor/lecturer'
+de = 'Name des/der Lehrenden'
+
+[non-techfak_date_of_birth]
+en = '''
+If you are not a member of the university (e.g. FH students), please enter your date of 
+birth
+'''
+de = '''
+Falls Sie <strong>kein</strong> Mitglied der Universität sind (z.B. FH Studierende),
+geben Sie bitte zusätzlich Ihr Geburtsdatum ein, um Verwechselungen vorzubeugen.
+'''
+
+[not_student]
+en = 'Non-students'
+de = 'Beschäftigte'
+
+[institute_choose]
+en = 'Please state which institution you will be working in'
+de = 'Bitte geben Sie an, in welcher AG Sie angestellt sind/werden'
+   
+
+[other]
+en = 'Other'
+de = 'Andere'
+
+[contact_person]
+en = '''
+In case of questions regarding your membership in one of the institutes please provide a 
+contact person.
+'''
+de = '''Ihr/e Ansprechpartner/in in der AG'''
+
+[institute_leave]
+en = 'When will you leave the institute?'
+de = 'Bis wann bleiben Sie in der AG?'
+
+
+[non-member_date_of_birth]
+en = '''
+If you are <strong>not</strong> a member of the university, and therefore have no 
+Uni-Id/matriculation number, please provide your date of birth, to avoid any possibility 
+of confusion.
+'''
+de = '''
+Falls Sie <strong>kein</strong> Mitglied der Universität sind (und somit keine 
+Uni-Id/Matrikelnummer haben), geben Sie bitte zusätzlich Ihr Geburtsdatum ein, um 
+Verwechselungen vorzubeugen.
+'''
+
+[tf_privacy_policy]
+en = '''
+The data collected on this site will only be used to create a login, a mail-address and 
+the application form (on paper) for the systems of the Faculty of Technology. Your first
+and last name can be shown to other users through our directory service. The 
+deletion of the account can be requested by you at any time.
+'''
+de = '''
+Die auf der Webseite Accountantrag (https://techfak.net/accountantrag) erhobenen Daten 
+werden ausschließlich für die Erstellung eines Logins, einer Mail-Adresse und eines 
+Nutzungsantrags (auf Papier) für die Systeme der Technischen Fakultät der Universität 
+Bielefeld genutzt. Ihr Vor- und Nachname sind im internen Verzeichnisdienst für alle
+Nutzer*innen einsehbar. Die Löschung des Accounts kann jederzeit durch den Account-Inhaber 
+in Auftrag gegeben werden.
+'''
+
+[uni_privacy_policy]
+en = '''
+The general <a 
+href='https://www.uni-bielefeld.de/(en)/Universitaet/datenschutzhinweise.html'>privacy
+guideline of the university</a> applies.
+'''
+de = '''
+Es gilt die <a 
+href='https://www.uni-bielefeld.de/(de)/Universitaet/datenschutzhinweise.html'>
+Datenschutzerklärung der Universität Bielefeld.</a>
+'''
+
+[agree]
+en = 'Agree and send'
+de = 'Verstanden und Absenden'
+
+## Translations of application types
+[techfak_student]
+de = '''
+Account für <b>Studierende</b>, die an der <b>Technischen Fakultät</b> eingeschrieben
+sind (auch im Nebenfach).
+'''
+en = '''
+<b>Student account</b> for students enrolled at the <b>Faculty of Technology</b>.
+'''
+
+[non-techfak_student]
+de = '''
+Account für <b>Studierende</b>, die an einer <b>anderen Fakultät</b> der Uni Bielefeld
+oder der FH eingeschrieben sind und eine Veranstaltung an der TechFak besuchen möchten.
+'''
+en = '''
+<b>Student account</b> for students enrolled at <b>other faculties</b> of the University
+of Bielefeld and FH, who want to take a specific course.
+'''
+
+[mewi_student]
+de = '''
+Account für <b>Studierende</b>, die für <b>Medienwissenschaft</b> eingeschrieben sind.
+'''
+en = '''
+<b>Student account</b> for students enrolled at <b>Media Studies
+(Medienwissenschaft)</b>.
+'''
+
+[student_assistant]
+de = '''
+Account für eine <b>Studentische Hilfskraft (SHK/WHF)</b>, die an der Technischen
+Fakultät, dem CITEC oder dem CoR-Lab beschäftigt ist.
+'''
+en = '''
+<b>Student assistant account</b> for working at the TechFak.
+'''
+
+[employee]
+de = '''
+<b>Angestelltenaccount</b> für Beschäftigte einer Arbeitsgruppe der Technischen 
+Fakultät, des CITEC oder des CoR-Lab.
+'''
+en = '''
+<b>Employee account</b> for working at the TechFak.
+'''
+
+[guest]
+de = '''
+Account für <b>GastwissenschaftlerInnen und PraktikantInnen</b>, die nur vorübergehend 
+an der Technischen Fakultät, dem CITEC oder dem CoR-Lab tätig sind.
+'''
+en = '''
+Account for <b>guest scientists</b> visiting the TechFak temporarily.
+'''
+
+# error page
+[error_occurred]
+en = '''
+An error occurred during processing of the application form. If you keep getting this 
+page please send an email to support@techfak.uni-bielefeld.de and briefly describe
+'''
+de = '''
+Beim Bearbeiten des Antrags ist ein Fehler aufgetreten. Wenn Sie diese Seite weiterhin 
+sehen, schreiben Sie bitte eine kurze Email an support@techfak.uni-bielefeld.de und 
+beschreiben Sie kurz
+'''
+
+[error_time]
+de = 'wann der Fehler aufgetreten ist. Dies wird uns helfen den Fehler zu suchen'
+en = 'when the error occured; this will help us find useful information in the logfiles'
+
+[error_type]
+de = 'für welchen Accounttyp sie einen Antrag stellen möchten.'
+en = 'what you applied for and'
+
+[error_data]
+de = 'welche Daten Sie eingetragen haben.'
+en = 'which data you have entered'
+
+[back_to_main_page]
+en = 'Back to the account application form'
+de = 'Zurück zum Accountantrag'
+
+# success page
+
+[application_success]
+en = '''Your application has been successfully submitted to the Rechnerbetriebsgruppe 
+(RBG).'''
+de = '''Ihr Antrag wurde erfolgreich an die Rechnerbetriebsgruppe übermittelt.'''
+
+[pickup_information]
+en = '''Usually your account will be ready within two workdays. You may collect your 
+login information at the RBG office at M3-100.'''
+de = '''Normalerweise können Sie ihren Account nach ein bis zwei Werktagen in M3-100 
+abholen.'''
+
+[pickup_requirements]
+en = '''Please take your "Unicard" or, if you don't have one, your Leporello and an 
+authoritative photo-ID document with you, e.g. passport, drivers license, national ID 
+card, ISIC.'''
+de = '''
+Bitte bringen Sie zur Abholung Ihre Unicard mit. Falls Sie keine Unicard besitzen, 
+bringen Sie bitte einen Lichtbildausweis/Führerschein mit und - falls Sie studieren - 
+Ihre Semesterbescheinigung.
+'''
+
+## Translation of institutes
+[ABi]
+en = 'Algorithmic and Bioinformatic'
+de = 'Algorithmik und Bioinformatik'
+
+[AI]
+en = 'Applied Informatics'
+de = 'Angewandte Informatik'
+
+[AmI]
+en = 'Ambient Intelligence'
+de = 'Ambient Intelligence'
+
+[ANI]
+en = 'Biodata Mining'
+de = 'Biodata Mining' # Applied Neuro-Informatics??
+
+[BI]
+en = 'Bio-Informatics'
+de = 'Bioinformatik'
+
+[BM]
+en = 'Bio-Mathmatics'
+de = 'Biomathematik'
+
+[ZKT]
+en = 'Cell Culture Technology'
+de = 'Zellkulturtechnik'
+
+[ZMB]
+en = 'Cellular and molecular Biotechnology'
+de = 'Zelluläre und molekulare Biotechnologie'
+
+[FT]
+en = 'Fermentation Technology'
+de = 'Fermentationstechnik'
+
+[CLF]
+en = 'Central Lab Facilities'
+de = 'Zentrallabor'
+
+[CG]
+en = 'Computer Graphics'
+de = 'Computergraphik'
+
+[RBG]
+en = 'Computer Support'
+de = 'Rechnerbetriebsgruppe'
+
+[CoR-Lab]
+en = 'Research Institute for Cognition and Robotics'
+de = 'Research Institute for Cognition and Robotics'
+
+[DEK]
+en = "Dean's Office"
+de = 'Dekanat'
+
+[RVS]
+en = 'Distributed Systems Group'
+de ='Rechnernetze und Verteilte Systeme'
+
+[GE]
+en = 'Gender and Emotion'
+de = 'Gender und Emotion'
+
+[GI]
+en = 'Genome Informatics'
+de = 'Genominformatik'
+
+[KS]
+en = 'Congnitronics and Sensorics'
+de = 'Kognitronik und Sensorik'
+
+[LC]
+en = 'Language and Cognition'
+de = 'Sprache und Kognition'
+
+[NI]
+en = 'Neuro-Informatics'
+de = 'Neuroinformatik'
+
+[NBS]
+en = 'Neuromorphic Behaving Systems'
+de = 'Neuromorphic Behaving Systems'
+
+[NCA]
+en = 'Neurocognition and Action'
+de = 'Neurokognition und Bewegung'
+
+[NCP]
+en = 'NeuroCognitive Psychology'
+de = 'Neurokognitive Psychologie'
+
+[SC]
+en = 'Semantic Computing'
+de = 'Semantische Datenbanken'
+
+[SCS]
+en = 'Social Cognitive Systems'
+de = 'Kognitive Systeme und Soziale Interaktion'
+
+[TI]
+en = 'Computer Engineering'
+de = 'Technische Informatik'
+
+[TCS]
+en = 'Machine Learning' # seit SoSe 18
+de = 'Maschinelles Lernen'
+
+[CIT-Guest]
+en = '''CIT-EC without affiliation to a listed workgroup(e.g. scientists in laboratory 
+or workshop)'''
+de = 'CIT-EC ohne Zugehörigkeit einer der genannten Gruppen'
+
+[CIT-Office]
+en = 'Cognitive Interaction Technology Main-Office'
+de = 'CIT-EC Geschäftsstelle'
+
+# vim: spell spelllang=de,en fo=aw

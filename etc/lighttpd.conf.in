@@ -1,0 +1,38 @@
+# This config is not intended to be used 'as is'
+# All %VALUES% need to be set to their correct value
+# see project README for a short sed command
+# Config for local lighttpd process run as user
+
+server.modules = (
+		"mod_accesslog",
+		"mod_indexfile",
+		"mod_cgi"
+		)
+
+mimetype.assign	= (
+		".html" => "text/html",
+		".txt" => "text/plain",
+		".css" => "text/css",
+		".js" => "application/x-javascript",
+		".jpg" => "image/jpeg",
+		".jpeg" => "image/jpeg",
+		".gif" => "image/gif",
+		".png" => "image/png",
+		"" => "application/octet-stream"
+		)
+
+index-file.names = ("index.de.html")
+# where PROJECT_ROOT is expected to be same folder containing the .git directory
+
+server.document-root = "%PROJECT_ROOT%/srv/"
+server.errorlog = "%PROJECT_ROOT%/var/lighttpd.error"
+accesslog.filename = "%PROJECT_ROOT%/var/lighttpd.access"
+server.pid-file = "%PROJECT_ROOT%/var/lighttpd.pid"
+server.username = "%USER%"
+
+server.port = 8080
+server.bind = "localhost"
+
+cgi.assign = (
+		".py"  => "/usr/bin/python3",
+	     )

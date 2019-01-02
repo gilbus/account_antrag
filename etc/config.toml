@@ -1,0 +1,94 @@
+[cgi]
+blacklist_chars = ["\\", "$", "`"]
+max_content_length = 500
+
+[output]
+# either `append` or `write` which determines how to open the output file
+# `write` starts at the beginning of the file
+# for either case a lock is used to ensure that only process can write at a time
+mode = 'append'
+
+# for uncatched cgi errors
+logfile = 
+# the placeholder must be named accordingly to the names of the html form elements
+
+# the special value `$ag` is either `stud` in case of a student application or the
+# identifier of the `institute`.
+
+file = 
+
+# `$timestamp` is the current time formatted according to `timestamp_format`, see
+# https://docs.python.org/3/library/datetime.html?highlight=strftime#strftime-and-strptime-behavior
+# for all formatters
+timestamp_format = '%Y-%m-%d %H:%M:%S.%f'
+
+# the first newline after ''' is ignored everything else is taken as is
+# dateOfBirth is formatted dd.MM.yyyy
+# `$applicationLanguage` is the language used by the applicant
+template = '''
+
+'''
+# # inside ''' are part of the multiline string
+
+# string to insert in case of no submitted value
+fallback = 'invalid'
+
+[build]
+template_dir = 
+www_dir = 
+i18n_file = 
+# needed inside the built html-files for the target of the HTML form
+cgi_url = 
+application_url = 
+institutes = [
+  "ABi",
+  "AI",
+  "AmI",
+  "ANI",
+  "BI",
+  "BM",
+  "ZKT",
+  "ZMB",
+  "FT",
+  "CLF",
+  "CG",
+  "RBG",
+  "CoR-Lab",
+  "DEK",
+  "RVS",
+  "GE",
+  "GI",
+  "KS",
+  "LC",
+  "NI",
+  "NBS",
+  "NCA",
+  "NCP",
+  "SC",
+  "SCS",
+  "TI",
+  "TCS",
+  "CIT-Guest",
+  "CIT-Office",
+]
+# `value`=other is handled inside the html template
+
+# additional_information can be set to list of ids of <details>-tags which get expanded
+# on the corresponding selection
+[type.techfak_student]
+additional_information = []
+
+[type.mewi_student]
+additional_information = []
+
+[type.non-techfak_student]
+additional_information = ['course_selection']
+
+[type.student_assistant]
+additional_information = ['institute_chooser']
+
+[type.employee]
+additional_information = ['institute_chooser']
+
+[type.guest]
+additional_information = ['institute_chooser']

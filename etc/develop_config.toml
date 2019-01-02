@@ -1,0 +1,64 @@
+[cgi]
+blacklist_chars = ["\\", "$", "`"]
+max_content_length = 500
+
+[output]
+# either `append` or `write` which determines how to open the output file
+# `write` starts at the beginning of the file
+# for either case a lock is used to ensure that only process can write at a time
+mode = 'append'
+
+# relative to cgi file
+logfile = "../../var/aa-web.log"
+
+# the special value `$ag` is either `stud` in case of a student application or the
+# identifier of the `institute`.
+# `$timestamp` is the current time formatted according to `timestamp_format`, see
+# https://docs.python.org/3/library/datetime.html?highlight=strftime#strftime-and-strptime-behavior
+# for all formatters
+# `$applicationLanguage` is the language used by the applicant
+
+# relative to srv directory
+file = '../../var/accountDataFile.${ag}'
+
+timestamp_format = '%Y-%m-%d %H:%M:%S.%f'
+# the first newline after ''' is ignored everything else is taken as is
+# dateOfBirth is formatted dd.MM.yyyy
+# the placeholder must be named accordingly to the names of the html form elements
+template = '''
+
+'''
+# string to insert in case of no submitted value
+fallback = 'invalid'
+
+[build]
+template_dir = 'share/templates'
+www_dir = 'srv'
+i18n_file = 'share/i18n.toml'
+cgi_url = 'http://localhost:8080/cgi-bin/accountApplication.py'
+# in production only `index` would be given and the rest determined via content
+# negotiation
+application_url = 'http://localhost:8080/index.de.html'
+institutes = [
+]
+# `value`=other is handled inside the html template
+
+# additional_information can be set to list of ids of <details>-tags which get expanded
+# on the corresponding selection
+[type.techfak_student]
+#additional_information = []
+
+[type.non-techfak_student]
+additional_information = ['course_selection']
+
+[type.mewi_student]
+additional_information = []
+
+[type.student_assistant]
+additional_information = ['institute_chooser']
+
+[type.employee]
+additional_information = ['institute_chooser']
+
+[type.guest]
+additional_information = ['institute_chooser']
